@@ -3,8 +3,15 @@ kind: Pod
 metadata:
   name: {{.Release.Name}}-nginx1
   labels:
-    zone: prod
+    zone: ejemplo
     version: v1
+  annotations: {
+    fecha: tiempo-{{.Release.Time}} ,
+    namespace: nombre-{{.Release.Namespace}},
+    actualizacion: Actualizacion-{{.Release.IsUpgrade}},
+    instalacion: Instalacion-{{.Release.IsInstall}},
+    revision: Revision-{{.Release.Revision}}
+  }
 spec:
   containers:
   - name: nginx1
