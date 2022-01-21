@@ -1,1 +1,13 @@
-entorno: produccion
+replicas: 4
+
+port: 80
+nodePort: 30002
+
+# Tipo de servicio
+# n -> NodePort
+# c -> ClusterIP
+tiposervicio: "n"
+
+entorno: test
+
+departamento: RRHH
