@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{.Release.Name}}-nginx-d
+  labels:
+    estado: "1"
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 5
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.7.9
+        resources:
+          limits:
+            memory: {{.Values.limites.memoria}}
+            cpu: {{.Values.limites.cpu}}
+          requests:
+            memory: {{.Values.peticiones.memoria}}
+            cpu: {{.Values.peticiones.cpu}}
+        ports:
+        - containerPort: 80

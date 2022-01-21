@@ -1,0 +1,6 @@
+limites:
+  memoria: "200Mi"
+  cpu: "2"
+peticiones:
+  memoria: "100Mi"
+  cpu: "0.5"
