@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{.Release.Name}}-web-deploy
+  {{- template "plantilla1.etiquetas" .}}
+spec:
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+      - name: web-deploy
+        image: apasoft/sonda-web:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+        livenessProbe:
+          httpGet:
+            path: /sonda.html
+            port: 80
+          initialDelaySeconds: 3
+          periodSeconds: 3
